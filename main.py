@@ -1,15 +1,3 @@
-############### Python Blackjack House Rules #####################
-
-## The deck is unlimited in size. 
-## There are no jokers. 
-## The Jack/Queen/King all count as 10.
-## The the Ace can count as 11 or 1.
-## Use the following list as the deck of cards:
-## cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-## The cards in the list have equal probability of being drawn.
-## Cards are not removed from the deck as they are drawn.
-## The computer is the dealer.
-
 from ascii import logo
 from os import system, name
 import random
@@ -40,20 +28,24 @@ def final_score(users_score, computers_score, users_cards, computers_cards):
     winner = ""
     users_draw = False
     computers_draw = False
+    user_win = "You win!"
+    computer_win = "Computer win!"
     if users_score > 21:
         users_draw = True
     if computers_score > 21:
         computers_draw = True
     
     if users_draw:
-        winner = "Computer win!"
-    elif not users_draw and users_score == computers_score:
-        winner = "Draw!"
+        winner = computer_win
     elif not users_draw:
-        if users_score > computers_score:
-            winner = "You win!"
+        if computers_draw:
+            winner = user_win
+        elif users_score > computers_score:
+            winner = user_win
         elif computers_score > users_score:
-            winner = "Computer win!"
+            winner = computer_win
+        else:
+            winner = "Draw!"
     
     print(f"    {winner}\n")
 
